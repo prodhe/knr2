@@ -17,15 +17,13 @@ int main(int argc, char *argv[]) {
     char line[MAXLINE];
     int len, tabstop;
 
-    if (argc > 0) {
+    if (argc > 0)
         tabstop = atoi(argv[1]);
-    } else {
+    else
         tabstop = 8;
-    }
 
-    while ((len = detab_line(line, MAXLINE, tabstop)) > 0) {
+    while ((len = detab_line(line, MAXLINE, tabstop)) > 0)
         printf("%s", line);
-    }
 
     return 0;
 }
