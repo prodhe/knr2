@@ -15,14 +15,14 @@ int main() {
             ++nl;
         if (c == ' ' || c == '\n' || c == '\t') {
             if (state == IN)
-                printf("\n");
+                //printf("\n");
             state = OUT;
         } else if (state == OUT) {
             state = IN;
             ++nw;
-            printf("%c", c);
+            //printf("%c", c);
         } else {
-            printf("%c", c);
+            //printf("%c", c);
         }
     }
     printf("%d %d %d\n", nl, nw, nc);
