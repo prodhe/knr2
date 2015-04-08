@@ -1,0 +1,19 @@
+en lista
+	lite undergrejer
+	typ en till
+		test
+asd	dasaa	tredje
+	lorem ipsum
+
+två listor
+	ännu en
+		kanske en till
+		och igen
+	men bara två totalt
+
+def main:
+	if test == true
+		gowild
+	else
+		nooo
+
