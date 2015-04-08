@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     char line[MAXLINE];
     int len, tabstop;
 
-    if (argc > 0)
+    if (argc > 1)
         tabstop = atoi(argv[1]);
     else
         tabstop = 8;
@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-/* getline: read a line into s, return length */
+/* detab_line: read a line into s, replace tabs with blanks and return length */
 int detab_line(char s[], int lim, int tabstop) {
     int c, i;
 
