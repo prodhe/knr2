@@ -15,7 +15,7 @@ int detab_line(char s[], int lim, int tabstop);
 /* main: detab - turn every tab into proper number of blanks */
 int main(int argc, char *argv[]) {
     char line[MAXLINE];
-    int len, rows, tabstop;
+    int len, tabstop;
 
     if (argc > 0) {
         tabstop = atoi(argv[1]);
@@ -23,9 +23,7 @@ int main(int argc, char *argv[]) {
         tabstop = 8;
     }
 
-    rows = 0; 
     while ((len = detab_line(line, MAXLINE, tabstop)) > 0) {
-        ++rows;
         printf("%s", line);
     }
 
