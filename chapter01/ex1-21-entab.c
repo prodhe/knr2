@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAXLINE 1000
+#define SPACE 1
+#define NOSPACE 0
 
 int entab_line(char s[], int lim, int tabstop);
 
@@ -30,10 +32,31 @@ int main(int argc, char *argv[]) {
 
 /* entab_line: read a line into s, maybe insert tabs and return length */
 int entab_line(char s[], int lim, int tabstop) {
-    int c, i;
+    int c, i, blank_count, state;
 
+    blank_count = 0;
+    state = NOSPACE;
     for (i=0; i < lim-tabstop-1 && (c=getchar()) != EOF && c != '\n'; ++i) {
-        s[i] = c;
+        if (c == ' ') {
+            state = SPACE; 
+            ++blank_count;
+            --i;
+        } else {
+            if (state == SPACE)
+                while (blank_count > 0) {
+                    if (blank_count / tabstop > 0) {
+                        s[i] = '\t';
+                        blank_count -= tabstop;
+                        ++i;
+                    } else if (blank_count % tabstop > 0) {
+                        s[i] = ' ';
+                        ++i;
+                        --blank_count;
+                    }
+                }
+            state = NOSPACE;
+            s[i] = c;
+        }
     }
     if (c == '\n') {
         s[i] = c;
