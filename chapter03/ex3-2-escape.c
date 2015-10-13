@@ -28,7 +28,7 @@ int escape(char s[], char t[])
                 s[j++] = t[i];
                 break;
         }
-        ++i;
+        i++;
     }
     s[j] = '\0';
     return j;
@@ -37,23 +37,21 @@ int escape(char s[], char t[])
 int unescape(char s[], char t[])
 {
     int i, j;
-    i = j = 0;
-    while (t[i] != '\0') {
-        switch(t[i]) {
-            case '\\':
-                if (t[i+1] == 'n') {
+    for (i=0, j=0; t[i] != '\0'; i++) {
+        if (t[i] == '\\') {
+            switch(t[i+1]) {
+                case 'n':
                     s[j++] = '\n';
-                    ++i;
-                } else if (t[i+1] == 't') {
+                    i++;
+                    break;
+                case 't':
                     s[j++] = '\t';
-                    ++i;
-                }
-                break;
-            default:
-                s[j++] = t[i];
-                break;
+                    i++;
+                    break;
+            }
+        } else {
+            s[j++] = t[i];
         }
-        ++i;
     }
     s[j] = '\0';
     return j;
@@ -64,12 +62,11 @@ int main()
     char buf[MAXSIZE], str[MAXSIZE];
     int c, i;
 
-    i = 0;
-    while (((c = getchar()) != EOF) && i < MAXSIZE) {
+    for (i=0; ((c = getchar()) != EOF) && i < MAXSIZE; i++) {
         buf[i] = c;
-        ++i;
     }
     buf[i] = '\0';
+
     unescape(str, buf);
     printf("%s\n", str);
     return 0;
